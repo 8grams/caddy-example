@@ -1,0 +1,81 @@
+<script
+  src="https://unpkg.com/htmx.org@1.9.5"
+  integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
+  crossorigin="anonymous"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"
+  rel="stylesheet"
+/>
+
+<script src="/static/tailwindcss-3.3.3.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {},
+    },
+  };
+</script>
+<style type="text/tailwindcss">
+  @layer utilities {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px white inset !important;
+    }
+    .stretched-link::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+</style>
+
+<script>
+  window.onload = () => {
+    window.caches.open("core-app").then((cache) => {
+      cache.addAll([
+        "https://unpkg.com/htmx.org@1.9.5",
+        "https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js",
+        "https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.min.css",
+        "/static/tailwindcss-3.3.3.min.js",
+        "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap",
+      ]);
+    });
+
+    self.addEventListener("fetch", (event) => {
+      event.respondWith(
+        caches
+          .match(event.request)
+          .then((response) => {
+            // caches.match() always resolves
+            // but in case of success response will have value
+            if (response !== undefined) {
+              return response;
+            } else {
+              return fetch(event.request).then((response) => {
+                // response may be used only once
+                // we need to save clone to put one copy in cache
+                // and serve second one
+                let responseClone = response.clone();
+
+                caches.open("core-app").then((cache) => {
+                  cache.put(event.request, responseClone);
+                });
+                return response;
+              });
+            }
+          })
+          .catch(() => {}),
+      );
+    });
+  };
+</script>

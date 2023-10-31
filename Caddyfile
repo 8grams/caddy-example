@@ -1,0 +1,7 @@
+:80 {
+	root * ./
+	try_files {path}.html {path}
+	encode gzip
+	file_server
+	templates
+}

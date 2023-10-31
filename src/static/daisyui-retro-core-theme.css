@@ -1,0 +1,61 @@
+[data-theme="retro-core"] {
+  color-scheme: light;
+
+  /* primary */
+  --p: 0 100% 47%;
+  --pf: 0 94% 44%;
+  --pc: 0 96% 95%;
+
+  /* secondary */
+  --s: 211 93% 42%;
+  --sf: 211 93% 42%;
+  --sc: 211 93% 90%;
+
+  /* accent */
+  --a: 0 0% 8%;
+  --af: 0 0% 0%;
+  --ac: 0 0% 90%;
+
+  /* neutral */
+  --n: 210 8% 14%;
+  --nf: 210 8% 14%;
+  --nc: 210 6% 87%;
+
+  /* info */
+  --in: 207 89% 70%;
+  --inc: 207 89% 10%;
+
+  /* success */
+  --su: 150 71% 50%;
+  --suc: 150 100% 10%;
+
+  /* warning */
+  --wa: 43 96% 60%;
+  --wac: 43 100% 11%;
+
+  /* error */
+  --er: 0 91% 78%;
+  --erc: 0 100% 14%;
+
+  /* base */
+  --b1: 0 0% 100%;
+  --b2: 0 0% 95%;
+  --b3: 180 2% 90%;
+  --bc: 215 28% 17%;
+
+  /* other */
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 2rem;
+  --animation-btn: 0.25s;
+  --animation-input: 0.2s;
+  --btn-text-case: uppercase;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+}
+
+body {
+  font-family: "Open Sans", ui-sans, sans-serif;
+}
