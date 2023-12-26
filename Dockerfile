@@ -9,3 +9,4 @@ COPY ./caddy/caddy_linux_amd64 /app/caddy
 EXPOSE 80
 
 CMD ["/app/caddy", "run"]
+# test push
